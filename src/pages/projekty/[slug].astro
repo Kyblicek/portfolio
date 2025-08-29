@@ -1,9 +1,15 @@
 ---
 import Site from "../../layouts/Site.astro";
 import { projects } from "../../data/projects";
-const { slug } = Astro.params;
-const p = projects.find(x => x.slug === slug);
-if (!p) throw new Error("Project not found");
+
+export function getStaticPaths() {
+  return projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { p },
+  }));
+}
+
+const { p } = Astro.props;
 ---
 <Site title={`${p.title} – Jakub Honzal`}>
 <article class="py-16 max-w-3xl">

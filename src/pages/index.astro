@@ -1,35 +1,53 @@
 ---
 import Site from "../layouts/Site.astro";
+import Scene from "../components/Scene.tsx";
+import AnimatedCard from "../components/AnimatedCard.tsx";
 ---
 <Site title="Jakub Honzal – Web developer">
-  <section class="py-24 md:py-28 lg:py-32">
-    <h1 class="font-display text-5xl md:text-7xl leading-tight text-ink">
-      Tvořím estetické a funkční weby
-      <span class="block text-purple">s důrazem na detail.</span>
-    </h1>
+  <section class="relative h-[80vh] flex items-center justify-center">
+    <div class="absolute inset-0">
+      <Scene client:load />
+    </div>
+    <div class="relative z-10 text-center">
+      <h1 class="font-display text-5xl md:text-7xl leading-tight text-paper">
+        Tvořím estetické a funkční weby
+        <span class="block text-mint">s důrazem na detail.</span>
+      </h1>
 
-    <p class="mt-6 max-w-2xl text-lg text-black/70">
-      Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.
-    </p>
+      <p class="mt-6 max-w-2xl text-lg text-white/70">
+        Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.
+      </p>
 
-    <div class="mt-8 flex gap-4">
-      <a href="/projekty" class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft">Projekty</a>
-      <a href="/kontakt" class="px-5 py-3 rounded-xl border border-purple/30 hover:border-purple transition">Kontakt</a>
+      <div class="mt-8 flex gap-4 justify-center">
+        <a href="/projekty" class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft">Projekty</a>
+        <a href="/kontakt" class="px-5 py-3 rounded-xl border border-white/30 hover:border-white transition">Kontakt</a>
+      </div>
     </div>
   </section>
 
-  <section class="grid md:grid-cols-3 gap-6 mb-20">
-    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
-      <h3 class="font-display text-xl">Rychlost</h3>
-      <p class="mt-2 text-black/70">Astro, optimalizace, čistý kód.</p>
-    </div>
-    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
-      <h3 class="font-display text-xl">Estetika</h3>
-      <p class="mt-2 text-black/70">Typografie, whitespace, konzistence.</p>
-    </div>
-    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
-      <h3 class="font-display text-xl">Funkce</h3>
-      <p class="mt-2 text-black/70">Formuláře, chat, video, integrace.</p>
+  <section class="py-20">
+    <div class="container">
+      <h2 class="text-center font-display text-4xl mb-12">Co dělám</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <AnimatedCard client:visible>
+          <div class="p-6 rounded-2xl border border-paper/10 hover:border-paper/30 transition h-full">
+            <h3 class="font-display text-xl">Rychlost</h3>
+            <p class="mt-2 text-white/70">Astro, optimalizace, čistý kód.</p>
+          </div>
+        </AnimatedCard>
+        <AnimatedCard client:visible>
+          <div class="p-6 rounded-2xl border border-paper/10 hover:border-paper/30 transition h-full">
+            <h3 class="font-display text-xl">Estetika</h3>
+            <p class="mt-2 text-white/70">Typografie, whitespace, konzistence.</p>
+          </div>
+        </AnimatedCard>
+        <AnimatedCard client:visible>
+          <div class="p-6 rounded-2xl border border-paper/10 hover:border-paper/30 transition h-full">
+            <h3 class="font-display text-xl">Funkce</h3>
+            <p class="mt-2 text-white/70">Formuláře, chat, video, integrace.</p>
+          </div>
+        </AnimatedCard>
+      </div>
     </div>
   </section>
 </Site>
