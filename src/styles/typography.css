@@ -1,0 +1,5 @@
+:root{
+    --radius: 14px;
+    }
+    .prose h1 { letter-spacing: -0.02em; }
+    .prose p { line-height: 1.75; }

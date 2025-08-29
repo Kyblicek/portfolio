@@ -1,0 +1,17 @@
+---
+const links = [
+{ href: "/", label: "Domů" },
+{ href: "/projekty", label: "Projekty" },
+{ href: "/o-mne", label: "O mně" },
+{ href: "/kontakt", label: "Kontakt" },
+];
+---
+<header class="sticky top-0 z-50 backdrop-blur bg-sky/80 border-b border-purple/10">
+<nav class="container pad-safe flex items-center justify-between h-16">
+<a href="/" class="font-display text-xl tracking-tight">JH</a>
+<ul class="hidden md:flex items-center gap-6">
+{links.map(l => <li><a class="hover:text-purple transition" href={l.href}>{l.label}</a></li>)}
+</ul>
+<a href="/cv.pdf" class="md:inline-block hidden px-3 py-2 rounded-xl bg-mint text-ink font-medium shadow-soft">CV</a>
+</nav>
+</header>

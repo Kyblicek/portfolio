@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Clash Display";
+    src: url("/fonts/ClashDisplay/ClashDisplay-Semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* už tam máš @tailwind ... */
+
+.container {
+    /* max šířka + centrování + vnitřní odsazení */
+    max-width: 72rem;         /* ~1152px, klidně 80rem pokud chceš širší */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;       /* 16px */
+    padding-right: 1rem;
+  
+    /* lepší odsazení na větších displejích */
+    /* Tailwind @apply ekvivalent: max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 */
+  }
+  @media (min-width: 640px){ .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+  @media (min-width: 1024px){ .container { padding-left: 2rem;   padding-right: 2rem;   } }
+  
+  /* volitelné: bezpečné okraje na iPhone s notch */
+  .pad-safe { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }  

@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Jakub Honzal" } = Astro.props;
+---
+<Base title={title}>
+  <Nav />
+  <main class="container">
+    <slot />
+  </main>
+  <Footer />
+</Base>

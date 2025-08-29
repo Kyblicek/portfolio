@@ -1,11 +1,35 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Site from "../layouts/Site.astro";
 ---
+<Site title="Jakub Honzal – Web developer">
+  <section class="py-24 md:py-28 lg:py-32">
+    <h1 class="font-display text-5xl md:text-7xl leading-tight text-ink">
+      Tvořím estetické a funkční weby
+      <span class="block text-purple">s důrazem na detail.</span>
+    </h1>
 
-<Layout>
-	<Welcome />
-</Layout>
+    <p class="mt-6 max-w-2xl text-lg text-black/70">
+      Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.
+    </p>
+
+    <div class="mt-8 flex gap-4">
+      <a href="/projekty" class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft">Projekty</a>
+      <a href="/kontakt" class="px-5 py-3 rounded-xl border border-purple/30 hover:border-purple transition">Kontakt</a>
+    </div>
+  </section>
+
+  <section class="grid md:grid-cols-3 gap-6 mb-20">
+    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
+      <h3 class="font-display text-xl">Rychlost</h3>
+      <p class="mt-2 text-black/70">Astro, optimalizace, čistý kód.</p>
+    </div>
+    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
+      <h3 class="font-display text-xl">Estetika</h3>
+      <p class="mt-2 text-black/70">Typografie, whitespace, konzistence.</p>
+    </div>
+    <div class="p-6 rounded-2xl border border-purple/10 hover:border-purple/30 transition">
+      <h3 class="font-display text-xl">Funkce</h3>
+      <p class="mt-2 text-black/70">Formuláře, chat, video, integrace.</p>
+    </div>
+  </section>
+</Site>
