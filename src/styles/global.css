@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-ink text-paper;
+}
+
 @font-face {
     font-family: "Clash Display";
     src: url("/fonts/ClashDisplay/ClashDisplay-Semibold.woff2") format("woff2");
