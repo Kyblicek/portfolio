@@ -1,31 +1,35 @@
 ---
 import Site from "../layouts/Site.astro";
-import Scene from "../components/Scene.tsx";
 import AnimatedCard from "../components/AnimatedCard.tsx";
+import FadeIn from "../components/FadeIn.tsx";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
 ---
 <Site title="Jakub Honzal – Web developer">
-  <section class="relative h-[80vh] flex items-center justify-center">
-    <div class="absolute inset-0">
-      <Scene client:load />
-    </div>
-    <div class="relative z-10 text-center">
-      <h1 class="font-display text-5xl md:text-7xl leading-tight text-paper">
-        Tvořím estetické a funkční weby
-        <span class="block text-mint">s důrazem na detail.</span>
-      </h1>
+  <!-- Hero -->
+  <section id="home" class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple/20 to-sky/20 animate-pulse"></div>
+    <FadeIn client:load>
+      <div class="relative z-10 text-center">
+        <h1 class="font-display text-5xl md:text-7xl leading-tight text-paper">
+          Tvořím estetické a funkční weby
+          <span class="block text-mint">s důrazem na detail.</span>
+        </h1>
 
-      <p class="mt-6 max-w-2xl text-lg text-white/70">
-        Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.
-      </p>
+        <p class="mt-6 max-w-2xl mx-auto text-lg text-white/70">
+          Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.
+        </p>
 
-      <div class="mt-8 flex gap-4 justify-center">
-        <a href="/projekty" class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft">Projekty</a>
-        <a href="/kontakt" class="px-5 py-3 rounded-xl border border-white/30 hover:border-white transition">Kontakt</a>
+        <div class="mt-8 flex gap-4 justify-center">
+          <a href="#projects" class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft hover:scale-105 transition-transform">Projekty</a>
+          <a href="#contact" class="px-5 py-3 rounded-xl border border-white/30 hover:border-white transition">Kontakt</a>
+        </div>
       </div>
-    </div>
+    </FadeIn>
   </section>
 
-  <section class="py-20">
+  <!-- Services -->
+  <section id="services" class="py-20">
     <div class="container">
       <h2 class="text-center font-display text-4xl mb-12">Co dělám</h2>
       <div class="grid md:grid-cols-3 gap-6">
@@ -48,6 +52,67 @@ import AnimatedCard from "../components/AnimatedCard.tsx";
           </div>
         </AnimatedCard>
       </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20">
+    <div class="container">
+      <h2 class="text-center font-display text-4xl mb-12">Projekty</h2>
+      <FadeIn client:visible>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p) => (
+            <ProjectCard p={p} />
+          ))}
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20">
+    <div class="container max-w-3xl">
+      <h2 class="font-display text-4xl mb-6 text-center md:text-left">O mně</h2>
+      <FadeIn client:visible>
+        <p class="mt-2 text-black/80">
+          Jmenuji se Jakub a věnuji se webovému i aplikačnímu vývoji. K počítačům mám blízko od dětství – od jednoduchých programů a menších her v Pythonu jsem se postupně posunul k webům a aplikacím, kde mě baví spojení technické i vizuální stránky.
+        </p>
+
+        <p class="mt-4 text-black/80">
+          Rád dělám fullstack vývoj, protože mi dává úplnou kontrolu nad tím, co se na stránkách děje a jak jednotlivé části fungují. Ke svému vzdělání v tomto oboru se aktivně učím dál – dělám kurzy, pracuji na vlastních projektech a neustále si vyhledávám nové informace, které mě posouvají dál.
+        </p>
+
+        <p class="mt-4 text-black/80">
+          Zaměřuji se na tvorbu přehledných, funkčních a estetických webů. Aktuálně pracuji na portálu pro podnikání v oblasti investičních a realitních služeb, kde řeším jak backend a frontend, tak i design. Současně vyvíjím vlastní aplikaci <strong>MedAI</strong>, která pomáhá lidem sledovat zdravotní a fitness cíle s podporou umělé inteligence.
+        </p>
+
+        <h3 class="font-display text-2xl mt-10">🛠️ Moje technologie a nástroje</h3>
+        <ul class="mt-4 space-y-2 opacity-90">
+          <li><strong>Frontend:</strong> HTML, CSS, JavaScript, TypeScript, Astro</li>
+          <li><strong>Backend:</strong> JavaScript (Node.js), Python, SQL</li>
+          <li><strong>Design &amp; nástroje:</strong> Figma, VS Code, PyCharm</li>
+        </ul>
+
+        <p class="mt-8 text-black/80">
+          Mám rád výzvy, učím se rychle a problémy beru jako příležitost, jak posunout svoje znalosti dál. Dbám na detaily, protože věřím, že právě ty dělají rozdíl mezi průměrnou a profesionální prací.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="container max-w-2xl">
+      <h2 class="font-display text-4xl text-center mb-6">Kontakt</h2>
+      <p class="text-center text-black/70">Ozvi se ohledně spolupráce, rád odpovím.</p>
+      <FadeIn client:visible>
+        <form action="https://formspree.io/f/yourid" method="POST" class="mt-8 grid gap-4">
+          <input name="name" placeholder="Jméno" class="px-4 py-3 rounded-xl border border-purple/20 focus:outline-none focus:border-purple" required />
+          <input type="email" name="email" placeholder="Email" class="px-4 py-3 rounded-xl border border-purple/20 focus:outline-none focus:border-purple" required />
+          <textarea name="message" placeholder="Zpráva" rows="5" class="px-4 py-3 rounded-xl border border-purple/20 focus:outline-none focus:border-purple" required></textarea>
+          <button class="px-5 py-3 rounded-xl bg-mint text-ink font-medium shadow-soft hover:scale-105 transition-transform">Odeslat</button>
+        </form>
+      </FadeIn>
     </div>
   </section>
 </Site>

@@ -5,7 +5,12 @@ import type { Project } from "../data/projects";
 const { p } = Astro.props as { p: Project };
 ---
 
-<a href={`/projekty/${p.slug}`} class="group block rounded-2xl border border-purple/10 hover:border-purple/40 transition overflow-hidden">
+<a
+  href={p.url ?? "#"}
+  target={p.url ? "_blank" : undefined}
+  rel={p.url ? "noopener" : undefined}
+  class="group block rounded-2xl border border-purple/10 hover:border-purple/40 hover:shadow-soft hover:-translate-y-1 transition overflow-hidden"
+>
   {p.cover && <img src={p.cover} alt={p.title} class="aspect-[16/9] object-cover" />}
   <div class="p-5">
     <div class="flex items-center justify-between mb-1">
