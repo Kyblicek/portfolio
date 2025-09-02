@@ -16,7 +16,7 @@ export type Project = {
     year: "2025",
     stack: ["Astro", "React", "Node", "Prisma", "WebRTC"],
     summary: "Soukromý klientský portál s chatem a videohovory.",
-    cover: "/img/rr-cover.jpg",
+    cover: "./img/rr-cover.jpg",
     url: "https://rrinvestments.eu",
     },
     {

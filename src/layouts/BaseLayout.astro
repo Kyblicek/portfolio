@@ -10,8 +10,8 @@ const { title = "Jakub Honzal" } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="min-h-screen font-body text-paper">
-    <!-- Global animated gradient background -->
-    <div class="fixed inset-0 -z-10 bg-aurora aurora-animate"></div>
+    <!-- Global animated gradient background (same as hero) -->
+    <div class="fixed inset-0 -z-10 bg-gradient-to-br from-purple/30 via-transparent to-sky/20 animate-aurora"></div>
     <slot />
   </body>
 </html>
