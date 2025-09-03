@@ -2,12 +2,36 @@
 // src/layouts/BaseLayout.astro
 import "../styles/global.css";
 const { title = "Jakub Honzal" } = Astro.props;
+
+// Build an absolute URL for the social preview image.
+// Falls back to the path if `site` isn't configured.
+const imagePath = "/img/portfolio-picture.png";
+let ogImage = imagePath;
+try {
+  // Prefer Astro.site (set via astro.config.mjs `site`),
+  // otherwise fall back to the current page URL if available.
+  const base = Astro.site ?? Astro.url;
+  if (base) ogImage = new URL(imagePath, base).toString();
+} catch {
+  // keep relative path
+}
 ---
 <html lang="cs">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <!-- Canonical URL -->
+    {Astro.url && <link rel="canonical" href={Astro.url} />}
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:image" content={ogImage} />
+    {Astro.url && <meta property="og:url" content={Astro.url} />}
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen font-body text-paper">
     <!-- Global animated gradient background (same as hero) -->
