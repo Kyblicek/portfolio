@@ -7,9 +7,6 @@ export type Project = {
     cover?: string;
     url?: string;
     };
-    
-    
-    import rrCover from "../img/rr-cover.svg";
 
     export const projects: Project[] = [
     {
@@ -18,7 +15,7 @@ export type Project = {
     year: "2025",
     stack: ["Astro", "React", "Node", "Prisma", "WebRTC"],
     summary: "Soukromý klientský portál s chatem a videohovory.",
-    cover: rrCover,
+    cover: "/img/rr-cover.jpg",
     url: "https://rrinvestments.eu",
     },
     {
