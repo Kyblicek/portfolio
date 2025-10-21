@@ -1,10 +1,11 @@
 ---
 // src/layouts/BaseLayout.astro
 import "../styles/global.css";
+
 const {
   title = "Jakub Honzal – Web developer",
   description = "Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.",
-  structuredData,
+  structuredData, // volitelné – můžeš přepsat default níž
   keywords = [
     "Jakub Honzal",
     "web developer",
@@ -13,51 +14,88 @@ const {
     "tvorba webových stránek",
   ],
 } = Astro.props;
-const serializedStructuredData = structuredData ? JSON.stringify(structuredData) : null;
 
-// Build an absolute URL for the social preview image.
-// Falls back to the path if `site` isn't configured.
+// Absolutní URL (preferuj Astro.site v astro.config.mjs)
+const base = Astro.site ?? Astro.url;
+const origin = base ? (base.origin ?? base.toString().replace(/\/$/, "")) : "https://portfolio-jakubhonzal.eu";
+const homepage = new URL("/", origin).toString();
+
+// OG image – pokud máš jen relativní path, zkusíme ji převést na absolutní
 const imagePath = "/img/portfolio-picture.png";
 let ogImage = imagePath;
 try {
-  // Prefer Astro.site (set via astro.config.mjs `site`),
-  // otherwise fall back to the current page URL if available.
-  const base = Astro.site ?? Astro.url;
-  if (base) ogImage = new URL(imagePath, base).toString();
-} catch {
-  // keep relative path
-}
+  const b = Astro.site ?? Astro.url;
+  if (b) ogImage = new URL(imagePath, b).toString();
+} catch {}
+
+// 🔎 Default JSON-LD (můžeš přepsat přes prop `structuredData`)
+const defaultStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": homepage,
+    "name": "Jakub Honzal – Portfolio",
+    "description": description,
+    "publisher": {
+      "@type": "Person",
+      "name": "Jakub Honzal",
+      "url": homepage
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jakub Honzal",
+    "url": homepage,
+    "jobTitle": "Web developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    }
+  }
+];
+
+// finální data – buď to co pošle stránka, nebo náš default
+const structuredDataFinal = structuredData ?? defaultStructuredData;
 ---
 <html lang="cs">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords.join(", ")} />
+    <meta name="keywords" content={Array.isArray(keywords) ? keywords.join(", ") : String(keywords)} />
     <meta name="author" content="Jakub Honzal" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0F172A" />
-    <!-- Canonical URL -->
-    {Astro.url && <link rel="canonical" href={Astro.url} />}
-    <!-- Open Graph -->
+
+    {/* Canonical */}
+    {base && <link rel="canonical" href={homepage} />}
+
+    {/* Open Graph */}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="cs_CZ" />
     <meta property="og:image" content={ogImage} />
-    {Astro.url && <meta property="og:url" content={Astro.url} />}
-    <!-- Twitter -->
+    {base && <meta property="og:url" content={homepage} />}
+
+    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    {serializedStructuredData && (
-      <script type="application/ld+json">{serializedStructuredData}</script>
-    )}
+
+    {/* ✅ JSON-LD jako RAW */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredDataFinal)}
+    ></script>
   </head>
+
   <body class="min-h-screen font-body text-paper">
-    <!-- Global animated gradient background (same as hero) -->
+    {/* Global animated gradient background (same as hero) */}
     <div class="fixed inset-0 -z-10 bg-gradient-to-br from-purple/30 via-transparent to-sky/20 animate-aurora"></div>
     <slot />
   </body>
