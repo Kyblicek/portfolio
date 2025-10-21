@@ -3,9 +3,14 @@ import Base from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "Jakub Honzal" } = Astro.props;
+const {
+  title = "Jakub Honzal – Web developer",
+  description = "Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.",
+  structuredData,
+  keywords,
+} = Astro.props;
 ---
-<Base title={title}>
+<Base title={title} description={description} structuredData={structuredData} keywords={keywords}>
   <Nav />
   <main class="container">
     <slot />

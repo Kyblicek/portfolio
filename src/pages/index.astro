@@ -4,8 +4,29 @@ import AnimatedCard from "../components/AnimatedCard.tsx";
 import FadeIn from "../components/FadeIn.tsx";
 import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data/projects";
+
+const description =
+  "Jakub Honzal je full-stack web developer se smyslem pro design. Vytváří přehledné, moderní a funkční webové projekty v Astu, Reactu a TypeScriptu.";
+const siteUrl = Astro.site?.toString() ?? "https://portfolio-t1f.pages.dev/";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Jakub Honzal – Web developer",
+  url: siteUrl,
+  description,
+  inLanguage: "cs",
+  author: {
+    "@type": "Person",
+    name: "Jakub Honzal",
+  },
+  potentialAction: {
+    "@type": "ContactAction",
+    target: `${siteUrl}#contact`,
+    name: "Kontaktujte Jakuba Honzala",
+  },
+};
 ---
-<Site title="Jakub Honzal – Web developer">
+<Site title="Jakub Honzal – Web developer" description={description} structuredData={structuredData}>
   <!-- Hero -->
   <section id="home" class="relative h-[80vh] flex items-center justify-center overflow-hidden">
     <FadeIn client:load>

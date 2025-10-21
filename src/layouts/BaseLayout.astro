@@ -1,7 +1,19 @@
 ---
 // src/layouts/BaseLayout.astro
 import "../styles/global.css";
-const { title = "Jakub Honzal" } = Astro.props;
+const {
+  title = "Jakub Honzal – Web developer",
+  description = "Full-stack developer se smyslem pro design. Vytvářím přehledné a moderní weby.",
+  structuredData,
+  keywords = [
+    "Jakub Honzal",
+    "web developer",
+    "full-stack vývojář",
+    "Astro developer",
+    "tvorba webových stránek",
+  ],
+} = Astro.props;
+const serializedStructuredData = structuredData ? JSON.stringify(structuredData) : null;
 
 // Build an absolute URL for the social preview image.
 // Falls back to the path if `site` isn't configured.
@@ -21,17 +33,28 @@ try {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(", ")} />
+    <meta name="author" content="Jakub Honzal" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0F172A" />
     <!-- Canonical URL -->
     {Astro.url && <link rel="canonical" href={Astro.url} />}
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="cs_CZ" />
     <meta property="og:image" content={ogImage} />
     {Astro.url && <meta property="og:url" content={Astro.url} />}
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    {serializedStructuredData && (
+      <script type="application/ld+json">{serializedStructuredData}</script>
+    )}
   </head>
   <body class="min-h-screen font-body text-paper">
     <!-- Global animated gradient background (same as hero) -->
