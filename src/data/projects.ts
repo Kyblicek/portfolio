@@ -15,7 +15,7 @@ export type Project = {
     year: "2025",
     stack: ["TypeScript", "PostgreSQL", "Prisma", "WebRTC"],
     summary: "Veřejné stránky pro realitního specialistu a investora s vlastním portálem pro klienty.",
-    cover: "/img/rr-cover.png",
+    cover: "./img/rr-cover.png",
     url: "https://rrinvestments.eu",
     },
     {
@@ -24,7 +24,7 @@ export type Project = {
     year: "2025",
     stack: ["React", "OpenAI", "DaisyUI", "TypeScript", "PostgreSQL", "Node.js"],
     summary: "Zdravotní deník s AI pomocníkem.",
-    cover: "/img/MedAI-docasne.png",
+    cover: "./img/MedAI-docasne.png",
     },
     {
     title: "Realitní B2B platforma",
@@ -32,6 +32,6 @@ export type Project = {
     year: "2025",
     stack: ["Astro", "TypeScript", "PostgreSQL", "DaisyUI", "Prisma", "Node.js", "Cloudflare"],
     summary: "B2B marketplace pro realitní kanceláře.",
-    cover: "/img/Reality.png",
+    cover: "./img/Reality.png",
     },
     ];
