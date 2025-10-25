@@ -16,11 +16,11 @@ export const projects: Project[] = [
     stack: ["TypeScript", "PostgreSQL", "Prisma", "WebRTC"],
     summary:
       "Veřejné stránky pro realitního specialistu a investora s vlastním portálem pro klienty.",
-    cover: "img/rr-cover.jpg",
+    cover: "img/rr-cover.png",
     url: "https://rrinvestments.eu",
   },
   {
-    title: "MedAI - Zdravotní aplikace s AI",
+    title: "MedAI - Zdravotní aplikace s AI - V přípravě",
     slug: "medai-health",
     year: "2025",
     stack: ["React", "OpenAI", "DaisyUI", "TypeScript", "PostgreSQL", "Node.js"],
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     cover: "img/MedAI-docasne.jpg",
   },
   {
-    title: "Realitní B2B platforma",
+    title: "Realitní B2B platforma - V přípravě",
     slug: "b2b-real-estate",
     year: "2025",
     stack: ["Astro", "TypeScript", "PostgreSQL", "DaisyUI", "Prisma", "Node.js", "Cloudflare"],
