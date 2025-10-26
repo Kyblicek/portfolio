@@ -8,8 +8,9 @@ const { p } = Astro.props as { p: Project };
 const base = import.meta.env.BASE_URL;
 
 // bezpečné atributy pro odkaz jen když je url
-const target = p.url ? "_blank" : undefined;
-const rel = p.url ? "noopener" : undefined;
+const isExternal = p.url?.startsWith("http");
+const target = isExternal ? "_blank" : undefined;
+const rel = isExternal ? "noopener" : undefined;
 
 // u cover očekáváme relativní cestu vůči /public (např. "img/rr-cover.png")
 const coverSrc = p.cover ? `${base}${p.cover}` : null;

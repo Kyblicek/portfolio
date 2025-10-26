@@ -26,6 +26,7 @@ export const projects: Project[] = [
     stack: ["React", "OpenAI", "DaisyUI", "TypeScript", "PostgreSQL", "Node.js"],
     summary: "Zdravotní deník s AI pomocníkem.",
     cover: "img/MedAI-docasne.jpg",
+    url: "/projects/medai-health",
   },
   {
     title: "Realitní B2B platforma - V přípravě",
